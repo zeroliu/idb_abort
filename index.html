@@ -1,0 +1,100 @@
+<html>
+
+<head>
+  <title>IndexedDB transaction abort research</title>
+  <style>
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+    }
+
+    .title>b {
+      color: #db3939;
+    }
+
+    .test-result-status {
+      font-size: 0.8rem;
+      color: white;
+      padding: 3px;
+      border-radius: 3px;
+    }
+
+    .test-result-status.pass {
+      background: green;
+    }
+
+    .test-result-status.fail {
+      background: #db3939;
+    }
+
+    .test-results {
+      border-top: 1px solid #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">Research <b>IDBTransaction abort event</b></h1>
+    <div id="userAgent"></div>
+    <div class="test-cases">
+      <h2>Test cases</h2>
+      The abort event is fired for any of the following reasons:
+      <div>
+        <h3>bad requests</h3>
+        <div>
+          <button name="addSameKeyTwice" class="test-btn">test</button>
+          Add the same key twice
+        </div>
+        <div>
+          <button name="addUniqueIndexTwice" class="test-btn">test</button>
+          Put the same index key when the key has a uniqueness constraint
+        </div>
+      </div>
+      <div>
+        <h3>an explicit abort() call</h3>
+      </div>
+      <div>
+        <h3>
+          an uncaught exception in the request's success/error handler
+        </h3>
+      </div>
+      <div>
+        <h3>
+          an I/O error (an actual failure to write to disk, for example disk detached, or other OS/hardware failure)
+        </h3>
+      </div>
+      <div>
+        <h3>quota exceeded</h3>
+      </div>
+    </div>
+    <div class="test-results">
+      <h2>Test results <span class="test-result-status"></span></h2>
+      <div>
+        <h3>IDBTransaction "error" handler</h3>
+        <div>
+          <span>Event target:</span>
+          <span class="error-event-target-name"></span>
+        </div>
+        <div>
+          <span>Transaction error:</span>
+          <span class="error-transaction-error"></span>
+        </div>
+      </div>
+      <div>
+        <h3>IDBTransaction "abort" handler</h3>
+        <div>
+          <span>Event target:</span>
+          <span class="abort-event-target-name"></span>
+        </div>
+        <div>
+          <span>Transaction error:</span>
+          <span class="abort-transaction-error"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
