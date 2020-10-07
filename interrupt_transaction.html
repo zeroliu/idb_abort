@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>Interrupt IDBTransaction</title>
+</head>
+
+<body>
+  <div id="iframeContainer">
+    <iframe src="interrupt_transaction_iframe.html"></iframe>
+  </div>
+  <p>Click start in the iframe then toggle iframe before idb operation in iframe completes.</p>
+  <button id="iframeSwitch">toggle iframe</button>
+  <div id="counter"></div>
+  <script>
+    let counter = 0;
+    let hideIframe = false;
+    setInterval(() => {
+      counter++;
+      document.getElementById('counter').textContent = counter;
+    }, 1000);
+    document.getElementById('iframeSwitch').addEventListener('click', () => {
+      hideIframe = !hideIframe;
+      if (hideIframe) {
+        const iframe = document.querySelector('iframe');
+        iframe.parentElement.removeChild(iframe);
+      } else {
+        const container = document.getElementById('iframeContainer');
+        const iframe = document.createElement('iframe');
+        iframe.src = 'interrupt_transaction_iframe.html';
+        container.appendChild(iframe);
+      }
+    });
+  </script>
+</body>
+
+</html>
