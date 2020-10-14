@@ -3,6 +3,10 @@ const NOT_CALLED = 'not called';
 const ABORT_ERROR = 'AbortError';
 const TRANSACTION_ERROR = 'TransactionError'
 
+window.addEventListener('unload', (e) => {
+  console.log(e);
+});
+
 const testCases = {
   addSameKeyTwice: {
     description: 'Bad requests - Add the same key twice',
