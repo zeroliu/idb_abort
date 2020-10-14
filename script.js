@@ -6,6 +6,9 @@ const TRANSACTION_ERROR = 'TransactionError'
 window.addEventListener('unload', (e) => {
   console.log(e);
 });
+window.addEventListener('beforeunload', (e) => {
+  console.log(e);
+});
 
 const testCases = {
   addSameKeyTwice: {
